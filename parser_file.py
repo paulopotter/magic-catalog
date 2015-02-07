@@ -40,6 +40,7 @@ class ParserFile:
     sites = PAGE_CONFIG.keys()
     result =[]
     for page in sites:
-      result.append(PAGE_CONFIG[page]['search_format'] .format(card_name))
+      link = PAGE_CONFIG[page]['search_format'] .format(card_name).strip()
+      result.append(link.replace(' ', '%20'))
 
     return result
