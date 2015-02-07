@@ -23,6 +23,6 @@ Metas:
 Formato do arquivo txt:
 ---
 
-'''
+```
   <nome_da_carta> [<quantidade>]
-'''
+```
