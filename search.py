@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 # coding:utf-8
 
-from parser_file import ParserFile
 import urllib
+from parser_file import ParserFile
 
 class Search:
 
@@ -61,11 +61,3 @@ class Search:
 
     print ']'
     return result
-
-
-if __name__ == '__main__':
-    try:
-        Search()
-    except Exception as e:
-        print e
-
