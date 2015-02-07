@@ -9,6 +9,8 @@ class Search:
   def __init__(self):
     self.all_files_content = ParserFile().all_files_content()
     link_url = self.search_by_file(self.files_name()[0])[0]
+    bla = self.find_card( self.open_url(link_url))
+
 
 
   def files_name(self):
@@ -30,8 +32,32 @@ class Search:
     f = urllib.urlopen(url)
     return f.read()
 
+  def  find_card(self, html):
+    html_begin = html.find("<table border='0' cellpadding='1' cellspacing='1' width='100%' style='margin-top:4px;'>")
+    html_strip_begin = html[html_begin:]
+
+    html_end = html_strip_begin.find("</table>")
+    html_strip_end = html[html_begin:(html_begin + html_end)]
+
+    html_find_attr_begin = html_strip_end.split("<tr>\r\n                                            <td class='advs' width='105'>")
+    html_find_attr_end = []
+
+    for bla in html_find_attr_begin:
+      html_find_attr_end.append(bla.split("</td>\r\n                                            <td class='advv'>"))
+
+    resoluto =[]
+    result = []
+    for attr in html_find_attr_end[1]:
+      resoluto.append(attr.split("</td>\r\n                                        </tr>")[0] )
+
+    result.append({resoluto[0].split("&nbsp;")[0]: resoluto[1].strip()})
+
+    return result
+
+
 if __name__ == '__main__':
     try:
         Search()
     except Exception as e:
         print e
+
