@@ -8,10 +8,6 @@ class Search:
 
   def __init__(self):
     self.all_files_content = ParserFile().all_files_content()
-    link_url = self.search_by_file(self.files_name()[0])[0]
-    bla = self.find_card( self.open_url(link_url))
-
-
 
   def files_name(self):
     all_files =self.all_files_content
@@ -52,6 +48,18 @@ class Search:
 
     result.append({resoluto[0].split("&nbsp;")[0]: resoluto[1].strip()})
 
+    return result
+
+  def return_matches(self):
+    result = {}
+    print '\r['
+
+    for i,link_url in enumerate(self.search_by_file(self.files_name()[0])):
+      new_name_card = self.find_card( self.open_url(link_url))
+      result[i] = [new_name_card[0], {'url': link_url}]
+      print '\r .'
+
+    print ']'
     return result
 
 
