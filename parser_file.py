@@ -9,7 +9,7 @@ class ParserFile:
   def __init__(self):
     self.all_files = glob(PATH_FILES + "/*.txt")
     self.all_content = self.all_files_content
-    print self.find_card(self.list_content(self.all_files[0])[3]['card_name'])[0]
+    # print self.find_card(self.list_content(self.all_files[0])[3]['card_name'])[0]
 
   def all_files_content (self):
     all_files = self.all_files
@@ -30,7 +30,8 @@ class ParserFile:
       card_quant = line_split[1]
       result.append({
           'card_name': card_name,
-          'quant': card_quant
+          'quant': card_quant,
+          'links_to_search': self.find_card(card_name),
         })
 
     return result
@@ -42,10 +43,3 @@ class ParserFile:
       result.append(PAGE_CONFIG[page]['search_format'] .format(card_name))
 
     return result
-
-
-if __name__ == '__main__':
-    try:
-        ParserFile()
-    except Exception as e:
-        print e
